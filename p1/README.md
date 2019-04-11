@@ -80,7 +80,7 @@ Dimension Table containing pre-converted date and time data.
 | week | Week of year | Int |
 | month | Month of the year | Int |
 | year | Year | Int |
-| weekday | Weekday | Varchar |
+| weekday | Weekday name | Varchar |
 
 ## Example Queries
 
