@@ -2,11 +2,21 @@
 
 Created a data model and star schema in PostgreSQL for the "Sparkify" startup to gain insights into how their users are interacting with Sparkify's music library. Sparkify's raw data is contained within multiple JSON files, and Pandas was used to perform ETL of that raw data into the PostgreSQL database.
 
+## Files in this project
+| File name | Description |
+| --- | --- |
+| data | (Directory) contains the song and log data sets in JSON |
+| create_tables.py | Python script that create PostgreSQL tables by executing sql_queries.py |
+| etl.ipynb | ETL Jupyter notebook |
+| etl.py | Python script that reads in song and log data, transforms the data via Pandas, and loads into PostgreSQL tables |
+| sql_queries.py | Contains the SQL code to create, insert into, and select from the PostgreSQL tables |
+| test.ipynb | Jupyter notebook to validate the data loaded into the PostgreSQL database |
+
 ## Running the ETL Python scripts
 Create the database schema by runnning the create_tables.py script:
 `python create_tables.py`
 
-Load the JSON data into the newly created PostgreSQL tables:
+Load the JSON data (from data/log_data and data/song_data) into the newly created PostgreSQL tables:
 `python etl.py`
 
 ## Database Schema and Tables
