@@ -109,7 +109,7 @@ group by level;
 ```
 Surprisingly, the number of Paid users far outnumbers the number of Free users:
 ```
-count | level
+ count | level
 -------+-------
   1229 | free
   5591 | paid
@@ -118,16 +118,28 @@ count | level
 ### What is the Gender of users listening to the most songs?
 ```
 select count(1)
-    , u.gender
-from songplays as s 
-join users as u 
-    on s.user_id = u.user_id 
-group by s.user_id, u.gender 
-order by count desc 
-limit 10;
+    , t.gender 
+from (
+    select count(1)
+        , u.gender
+    from songplays as s
+    join users as u
+        on s.user_id = u.user_id
+    group by s.user_id, u.gender
+    order by count desc
+    limit 10
+) as t 
+group by gender;
+```
+Of the 10 individuals that listened to the most songs through Sparkify, 7 of them are women, and 3 are men:
+```
+ count | gender
+-------+--------
+     7 | F
+     3 | M
 ```
 
-### What is the most popular day to play music?
+### How many songs are played on the different days of the week?
 ```
 select weekday,
     count(1) from 
@@ -135,4 +147,18 @@ songplays as s
 join time as t 
     on s.start_time = t.start_time 
 group by weekday
+order by count(1) desc;
+```
+The weekdays are popular days for song plays, with much fewer song plays occurring on the weekends.
+Wednesdays are the most popular day to listen to music, but Friday has nearly as many song plays as Wednesday.
+```
+  weekday  | count
+-----------+-------
+ Wednesday |  1364
+ Friday    |  1295
+ Tuesday   |  1071
+ Thursday  |  1052
+ Monday    |  1014
+ Saturday  |   628
+ Sunday    |   396
 ```
