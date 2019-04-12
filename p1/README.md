@@ -43,6 +43,8 @@ Fact Table containing information on every single song played in the Sparkify mu
 #### Description
 Dimension Table containing information about each User.
 
+Note: Data loads to this table will perform an upsert, inserting new data into the table, and updating the existing row when newer data is encountered. Rows updated by an upsert: (first_name, last_name, gender)
+
 #### Columns
 | Column Name | Description | Datatype |
 | --- | --- | --- |
@@ -68,6 +70,8 @@ Dimension Table containing additional information about each song.
 #### Description
 Dimension Table containing additional information about each artist.
 
+Note: Data loads to this table will perform an upsert, inserting new data into the table, and updating the existing row when newer data is encountered. Rows updated by an upsert: (name, location, latitude, longitude)
+
 #### Columns
 | Column Name | Description | Datatype |
 | --- | --- | --- |
@@ -80,6 +84,8 @@ Dimension Table containing additional information about each artist.
 ### Time Table
 #### Description
 Dimension Table containing pre-converted date and time data.
+
+Note: Data loaded into this table will not be upserted. Any attempts to load a row with a Primary Key that already exists in the table will be discarded, as the new data cannot be any more correct than it already is.
 
 #### Columns
 | Column Name | Description | Datatype |
