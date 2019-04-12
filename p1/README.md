@@ -120,7 +120,7 @@ order by count desc
 limit 10;
 ```
 
-### Most popular day to play music?
+### What is the most popular day to play music?
 ```
 select weekday,
     count(1) from 
