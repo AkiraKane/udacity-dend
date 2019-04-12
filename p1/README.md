@@ -107,6 +107,13 @@ select count(1)
 from songplays 
 group by level;
 ```
+Surprisingly, the number of Paid users far outnumbers the number of Free users:
+```
+count | level
+-------+-------
+  1229 | free
+  5591 | paid
+```
 
 ### What is the Gender of users listening to the most songs?
 ```
