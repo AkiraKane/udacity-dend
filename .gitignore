@@ -1,3 +1,5 @@
 virtualenv
 .vscode/
 secrets
+part3/lesson3/terraform/.terraform
+part3/lesson3/terraform/terraform*
