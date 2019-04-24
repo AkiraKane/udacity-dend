@@ -1,6 +1,20 @@
-# Define region - Hard coded to us-west-2
+# Variables
+variable "redshift_username" {
+    type = "string"
+}
+
+variable "redshift_password" {
+    type = "string"
+}
+
+variable "aws_region" {
+    type    = "string"
+    default = "us-west-2"
+}
+
+# Define AWS region
 provider "aws" {
-  region = "us-west-2"
+    region = "${var.aws_region}"
 }
 
 # Create a Role for Redshift cluster
@@ -38,10 +52,10 @@ resource "aws_iam_role_policy_attachment" "redshift-read-s3" {
 resource "aws_redshift_cluster" "cluster-1" {
   cluster_identifier = "dend-redshift-cluster"
   database_name      = "dwh"
-  master_username    = ".."
-  master_password    = ".."
+  master_username    = "${var.redshift_username}"
+  master_password    = "${var.redshift_password}"
   node_type          = "dc2.large"
   cluster_type       = "multi-node"
   number_of_nodes    = "4"
-  iam_roles          = ["${aws_iam_role.redshift-dw-role.name}"]
+  iam_roles          = ["${aws_iam_role.redshift-dw-role.arn}"]
 }
