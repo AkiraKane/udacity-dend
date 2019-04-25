@@ -59,3 +59,12 @@ resource "aws_redshift_cluster" "cluster-1" {
   number_of_nodes    = "4"
   iam_roles          = ["${aws_iam_role.redshift-dw-role.arn}"]
 }
+
+# Outputs
+output "RedshiftEndpoint" {
+  value = "${aws_redshift_cluster.cluster-1.endpoint}"
+}
+
+output "DWRoleARN" {
+  value = "${aws_iam_role.redshift-dw-role.arn}"
+}
